@@ -9,23 +9,153 @@
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="./images/favicon-32x32.png"
+      href="./public/favicon-32x32.png"
+    />
+    <title>Frontend Mentor | Todo app</title>
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
     />
 
-    <title>Frontend Mentor | Todo app</title>
+    <!-- icons -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+
+    <!-- style -->
+    <link rel="stylesheet" href="./src/assets/styles.css" />
   </head>
-  <body>
-    Todo
+  <body data-theme="light">
+    <header>
+      <div class="flex container container--header">
+        <div class="flex header__title">
+          <h1 class="text-large uppercase letter-spacing text-crl-white">
+            Todo <span class="sr-only">app</span>
+          </h1>
+          <button type="button" class="button button--theme">
+            <span class="sr-only">Dark Mode</span>
+          </button>
+        </div>
+        <form action="index.html" method="post" class="grid-3col">
+          <div class="input-group">
+            <div aria-hidden="true" class="checkbox"></div>
+            <input
+              id="add-task"
+              name="add-task"
+              type="text"
+              placeholder="Read for 30 minutes"
+            />
+            <label for="add-task" class="text-crl-500 form__label"
+              >Create a new todo...</label
+            >
+            <button type="submit" class="button button--check">
+              <span class="sr-only">Add new task</span>
+              <span aria-hidden="true" class="material-symbols-outlined">
+                check
+              </span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </header>
 
-    <!-- Add dynamic number -->
-    items left All Active Completed Clear Completed Drag and drop to reorder
-    list
+    <main class="container container--list">
+      <h2 class="sr-only">To-do list</h2>
+      <ul role="list" class="todo-list grid-3col box-shadow">
+        <li>
+          <input type="checkbox" name="task01" id="task01" />
+          <label for="task01">Complete online JavaScrip course</label>
+          <button type="button" class="button button--remove">
+            <span class="sr-only">Remove task</span>
+            <span aria-hidden="true" class="material-symbols-outlined">
+              close
+            </span>
+          </button>
+        </li>
+        <li>
+          <input type="checkbox" name="task02" id="task02" />
+          <label for="task02">Jog around the park 3x</label>
+          <button type="button" class="button button--remove">
+            <span class="sr-only">Remove task</span>
+            <span aria-hidden="true" class="material-symbols-outlined">
+              close
+            </span>
+          </button>
+        </li>
+        <li>
+          <input type="checkbox" name="task03" id="task03" />
+          <label for="task03">10 minutes meditation</label>
+          <button type="button" class="button button--remove">
+            <span class="sr-only">Remove task</span>
+            <span aria-hidden="true" class="material-symbols-outlined">
+              close
+            </span>
+          </button>
+        </li>
+      </ul>
+      <div class="actions-section">
+        <div class="actions-section__status box-shadow">
+          <p class="text-crl-500 float-left">
+            <span class="task-left-js">-1</span> items left
+          </p>
+        </div>
+        <div
+          role="tablist"
+          class="actions-section__action-btns flex box-shadow"
+        >
+          <button
+            aria-selected="true"
+            role="tab"
+            aria-controls="All-tasks-tab"
+            class="text-crl-500 text-bold button"
+            type="button"
+          >
+            All <span class="sr-only">Tasks</span>
+          </button>
+          <button
+            aria-selected="false"
+            role="tab"
+            aria-controls="Active-tasks-tab"
+            class="text-crl-500 text-bold button"
+            type="button"
+          >
+            Active <span class="sr-only">Tasks</span>
+          </button>
+          <button
+            aria-selected="false"
+            role="tab"
+            aria-controls="Complete-tasks-tab"
+            class="text-crl-500 text-bold button"
+            type="button"
+          >
+            Completed <span class="sr-only">Tasks</span>
+          </button>
+        </div>
+        <div class="actions-section__clear-btn box-shadow">
+          <button type="button" class="text-crl-500 button">
+            Clear Completed <span class="sr-only">Tasks</span>
+          </button>
+        </div>
+      </div>
 
-    <div class="attribution">
-      Challenge by
-      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
-        >Frontend Mentor</a
-      >. Coded by <a href="#">Your Name Here</a>.
-    </div>
+      <p class="text-crl-500 text-center">Drag and drop to reorder list</p>
+    </main>
+
+    <footer class="attribution text-center">
+      <p>
+        Challenge by
+        <a
+          href="https://www.frontendmentor.io?ref=challenge"
+          target="_blank"
+          class="text-crl-primary"
+          >Frontend Mentor</a
+        >. Coded by <a href="#" class="text-crl-primary">AnaCarolina</a>.
+      </p>
+    </footer>
   </body>
 </html>
