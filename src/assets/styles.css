@@ -31,6 +31,7 @@
   /*** Background-image ***/
   --bg-img-mobile: url("./images/bg-mobile-light.jpg");
   --bg-img-desktop: url("./images/bg-desktop-light.jpg");
+  --bg-theme-btn: url("./icons/icon-moon.svg");
 }
 
 body[data-theme="dark"] {
@@ -42,6 +43,7 @@ body[data-theme="dark"] {
   --crl-600: hsl(234, 39%, 85%);
   --bg-img-mobile: url("./images/bg-mobile-dark.jpg");
   --bg-img-desktop: url("./images/bg-desktop-dark.jpg");
+  --bg-theme-btn: url("./icons/icon-sun.svg");
 }
 
 /*********************/
@@ -342,7 +344,7 @@ input[type="checkbox"]:checked + label {
 }
 
 .button--theme {
-  background-image: url("./icons/icon-moon.svg");
+  background-image: var(--bg-theme-btn);
   background-repeat: no-repeat;
   background-size: 100%;
   padding: 0.8rem;
