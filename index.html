@@ -32,6 +32,7 @@
 
     <!-- scripts -->
     <script src="./src/theme.js" defer></script>
+    <script type="module" src="./src/app.js" defer></script>
   </head>
   <body data-theme="">
     <header>
@@ -49,7 +50,7 @@
             <!-- <span class="sr-only"></span> -->
           </button>
         </div>
-        <form action="index.html" method="post" class="grid-3col">
+        <form id="form" action="index.html" method="post" class="grid-3col">
           <div class="input-group">
             <div aria-hidden="true" class="checkbox"></div>
             <input
@@ -57,6 +58,7 @@
               name="add-task"
               type="text"
               placeholder="Read for 30 minutes"
+              required
             />
             <label for="add-task" class="text-crl-500 form__label"
               >Create a new todo...</label
@@ -74,8 +76,13 @@
 
     <main class="container container--list">
       <h2 class="sr-only">To-do list</h2>
-      <ul role="list" class="todo-list grid-3col box-shadow">
-        <li>
+      <ul
+        id="task-list"
+        role="list"
+        class="todo-list grid-3col box-shadow"
+        dropzone="move"
+      >
+        <!-- <li draggable="true">
           <input type="checkbox" name="task01" id="task01" />
           <label for="task01">Complete online JavaScrip course</label>
           <button type="button" class="button button--remove">
@@ -85,31 +92,11 @@
             </span>
           </button>
         </li>
-        <li>
-          <input type="checkbox" name="task02" id="task02" />
-          <label for="task02">Jog around the park 3x</label>
-          <button type="button" class="button button--remove">
-            <span class="sr-only">Remove task</span>
-            <span aria-hidden="true" class="material-symbols-outlined">
-              close
-            </span>
-          </button>
-        </li>
-        <li>
-          <input type="checkbox" name="task03" id="task03" />
-          <label for="task03">10 minutes meditation</label>
-          <button type="button" class="button button--remove">
-            <span class="sr-only">Remove task</span>
-            <span aria-hidden="true" class="material-symbols-outlined">
-              close
-            </span>
-          </button>
-        </li>
-      </ul>
+      --></ul>
       <div class="actions-section">
         <div class="actions-section__status box-shadow">
           <p class="text-crl-500 float-left">
-            <span class="task-left-js">-1</span> items left
+            <span class="task-count-js">-1</span> items left
           </p>
         </div>
         <div
@@ -117,6 +104,7 @@
           class="actions-section__action-btns flex box-shadow"
         >
           <button
+            id="allTasks"
             aria-selected="true"
             role="tab"
             aria-controls="All-tasks-tab"
@@ -126,6 +114,7 @@
             All <span class="sr-only">Tasks</span>
           </button>
           <button
+            id="activeTasks"
             aria-selected="false"
             role="tab"
             aria-controls="Active-tasks-tab"
@@ -135,6 +124,7 @@
             Active <span class="sr-only">Tasks</span>
           </button>
           <button
+            id="completedTasks"
             aria-selected="false"
             role="tab"
             aria-controls="Complete-tasks-tab"
@@ -145,7 +135,7 @@
           </button>
         </div>
         <div class="actions-section__clear-btn box-shadow">
-          <button type="button" class="text-crl-500 button">
+          <button id="clearCompleted" type="button" class="text-crl-500 button">
             Clear Completed <span class="sr-only">Tasks</span>
           </button>
         </div>

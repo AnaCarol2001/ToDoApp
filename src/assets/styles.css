@@ -256,7 +256,7 @@ body[data-theme="dark"] .box-shadow {
 input[type="text"] {
   border: none;
   outline: none;
-  background-color: transparent;
+  background-color: var(--crl-components-bg);
   cursor: pointer;
   width: 100%;
   padding-block: clamp(1rem, 0.8239rem + 0.7512vw, 1.5rem);
