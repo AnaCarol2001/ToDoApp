@@ -28,11 +28,11 @@
     />
 
     <!-- style -->
-    <link rel="stylesheet" href="./src/assets/styles.css" />
+    <link rel="stylesheet" href="./src/assets/css/styles.css" />
 
     <!-- scripts -->
-    <script src="./src/theme.js" defer></script>
-    <script type="module" src="./src/app.js" defer></script>
+    <script src="./src/js/theme.js" defer></script>
+    <script src="./src/js/app.js" defer></script>
   </head>
   <body data-theme="">
     <header>
@@ -80,19 +80,8 @@
         id="task-list"
         role="list"
         class="todo-list grid-3col box-shadow"
-        dropzone="move"
-      >
-        <!-- <li draggable="true">
-          <input type="checkbox" name="task01" id="task01" />
-          <label for="task01">Complete online JavaScrip course</label>
-          <button type="button" class="button button--remove">
-            <span class="sr-only">Remove task</span>
-            <span aria-hidden="true" class="material-symbols-outlined">
-              close
-            </span>
-          </button>
-        </li>
-      --></ul>
+        aria-live="polite"
+      ></ul>
       <div class="actions-section">
         <div class="actions-section__status box-shadow">
           <p class="text-crl-500 float-left">
@@ -100,36 +89,35 @@
           </p>
         </div>
         <div
-          role="tablist"
-          class="actions-section__action-btns flex box-shadow"
+          class="filter-btns-js actions-section__filter-btns flex box-shadow"
         >
           <button
             id="allTasks"
+            aria-controls="task-list"
             aria-selected="true"
-            role="tab"
-            aria-controls="All-tasks-tab"
             class="text-crl-500 text-bold button"
             type="button"
+            data-filter="all"
           >
             All <span class="sr-only">Tasks</span>
           </button>
           <button
             id="activeTasks"
+            aria-controls="task-list"
             aria-selected="false"
-            role="tab"
-            aria-controls="Active-tasks-tab"
             class="text-crl-500 text-bold button"
             type="button"
+            data-filter="active"
           >
             Active <span class="sr-only">Tasks</span>
           </button>
           <button
             id="completedTasks"
+            aria-controls="task-list"
             aria-selected="false"
-            role="tab"
-            aria-controls="Complete-tasks-tab"
             class="text-crl-500 text-bold button"
             type="button"
+            data-filter="completed"
           >
             Completed <span class="sr-only">Tasks</span>
           </button>
