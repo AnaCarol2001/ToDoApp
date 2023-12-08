@@ -58,6 +58,7 @@
               name="add-task"
               type="text"
               placeholder="Read for 30 minutes"
+              autocomplete="off"
               required
             />
             <label for="add-task" class="text-crl-500 form__label"
@@ -143,5 +144,18 @@
         >. Coded by <a href="#" class="text-crl-primary">AnaCarolina</a>.
       </p>
     </footer>
+
+    <template id="listItem">
+      <li draggable="true">
+        <input type="checkbox" name="" id="" />
+        <label for=""></label>
+        <button type="button" class="button button--remove">
+          <span class="sr-only">Remove task</span>
+          <span aria-hidden="true" class="material-symbols-outlined">
+            close
+          </span>
+        </button>
+      </li>
+    </template>
   </body>
 </html>
