@@ -205,23 +205,20 @@ function reorderArray(newOrder) {
 /*-------------------------------*/
 
 const $CLEAR_BTN = document.getElementById("clearCompleted");
-const $FILTERS = document.querySelector(".filter-btns-js");
+const $FILTERS = document.querySelector(".filters-js");
 
 $FILTERS.addEventListener("click", (e) => {
   const $BTNS = $FILTERS.querySelectorAll("button");
   let target = e.target;
-  let tasks;
 
-  $BTNS.forEach((btn) => (btn.ariaSelected = false));
+  $BTNS.forEach((btn) => btn.classList.remove("active"));
+  target.classList.add("active");
   if (target.dataset.filter == "active") {
-    tasks = filterTasks("active");
-    target.ariaSelected = true;
+    filterTasks(false);
   } else if (target.dataset.filter == "completed") {
-    tasks = filterTasks("completed");
-    target.ariaSelected = true;
+    filterTasks(true);
   } else {
-    tasks = filterTasks();
-    target.ariaSelected = true;
+    filterTasks("all");
   }
 });
 
@@ -234,31 +231,18 @@ $CLEAR_BTN.addEventListener("click", () => {
 
 /**
  * Shows all tasks, active tasks, or only the completed tasks.
- * @param {String} filter
+ * @param {Any} checkValue : true, false or all
  */
-function filterTasks(filter = "all") {
-  $TASKS_LIST
-    .querySelectorAll("li")
-    .forEach((task) => task.classList.add("d-none"));
-  switch (filter) {
-    case "active":
-      let activeTasks = $TASKS_LIST.querySelectorAll(
-        "li:has(input:not(:checked))"
-      );
-      activeTasks.forEach((task) => task.classList.remove("d-none"));
-      break;
-    case "completed":
-      let completedTasks = $TASKS_LIST.querySelectorAll(
-        "li:has(input:checked)"
-      );
-      completedTasks.forEach((task) => task.classList.remove("d-none"));
-      break;
-    default:
-      $TASKS_LIST
-        .querySelectorAll("li")
-        .forEach((task) => task.classList.remove("d-none"));
-      break;
-  }
+function filterTasks(checkValue) {
+  let tasks = $TASKS_LIST.querySelectorAll("li");
+  tasks.forEach((task) => {
+    const CHECK = task.querySelector("input").checked;
+    if (CHECK === checkValue || checkValue === "all") {
+      task.removeAttribute("hidden");
+    } else {
+      task.setAttribute("hidden", true);
+    }
+  });
 }
 
 /**

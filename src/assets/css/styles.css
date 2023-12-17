@@ -160,7 +160,7 @@ button {
   text-transform: uppercase;
 }
 
-.d-none {
+[hidden] {
   display: none !important;
 }
 
@@ -231,6 +231,7 @@ body[data-theme="dark"] .box-shadow {
   display: inline-grid;
   place-content: center;
   padding: 0rem;
+  pointer-events: all;
   cursor: pointer;
 }
 
@@ -427,8 +428,8 @@ input[type="checkbox"]:checked + label {
   font-size: 1rem;
 }
 
-.actions-section__filter-btns > button[aria-selected="true"],
-.actions-section__filter-btns > button:active {
+.actions-section__filter-btns > button.active {
+  pointer-events: none;
   color: var(--crl-primary);
 }
 
