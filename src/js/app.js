@@ -26,6 +26,7 @@ $FORM.addEventListener("submit", (e) => {
   addTask($FORM["add-task"].value);
   $FORM["add-task"].value = "";
   $FORM["add-task"].focus();
+  document.querySelector("button[data-filter='all']").click();
 });
 
 /**
@@ -110,6 +111,7 @@ $TASKS_LIST.addEventListener("click", (e) => {
   if (e.target.matches("button.button--remove")) {
     removeTask(li);
   }
+  document.querySelector("button[data-filter].active").click();
   activeTasks();
   updateLocalStorage();
 });
@@ -129,7 +131,7 @@ function updateStatus(task_id, checkedValue) {
  */
 function removeTask(element) {
   task_data.splice(
-    task_data.findIndex((task) => task.id === element.id),
+    task_data.findIndex((task) => task.id === +element.id),
     1
   );
   element.remove();
@@ -188,12 +190,8 @@ $TASKS_LIST.addEventListener("drop", (e) => {
  */
 function reorderArray(newOrder) {
   let currentOrder = task_data.map((task) => task.id);
-
-  // Checks if the order of the tasks has changed and arrays have the same length
-  if (
-    !currentOrder.every((val, index) => val === newOrder[index]) &&
-    currentOrder.length === newOrder.length
-  ) {
+  // Checks if the order of the tasks has changed
+  if (!currentOrder.every((val, index) => val === newOrder[index])) {
     // reorder tasks
     task_data.sort((a, b) => newOrder.indexOf(a.id) - newOrder.indexOf(b.id));
     updateLocalStorage();
@@ -204,14 +202,14 @@ function reorderArray(newOrder) {
 /* Filter Buttons                */
 /*-------------------------------*/
 
-const $CLEAR_BTN = document.getElementById("clearCompleted");
 const $FILTERS = document.querySelector(".filters-js");
+const $CLEAR_BTN = document.getElementById("clearCompleted");
 
 $FILTERS.addEventListener("click", (e) => {
-  const $BTNS = $FILTERS.querySelectorAll("button");
   let target = e.target;
-
+  const $BTNS = $FILTERS.querySelectorAll("button");
   $BTNS.forEach((btn) => btn.classList.remove("active"));
+
   target.classList.add("active");
   if (target.dataset.filter == "active") {
     filterTasks(false);
@@ -226,6 +224,7 @@ $FILTERS.addEventListener("click", (e) => {
 $CLEAR_BTN.addEventListener("click", () => {
   $TASKS_LIST.querySelectorAll("li:has(input:checked)").forEach((task) => {
     removeTask(task);
+    updateLocalStorage();
   });
 });
 
@@ -260,8 +259,14 @@ function activeTasks() {
 /*----------------------*/
 
 function init() {
-  task_data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  task_data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [
+    { id: 1, task: "Create a Todo", taskChecked: false },
+    { id: 2, task: "Do the Todo app challenge", taskChecked: true },
+    { id: 3, task: "Study JavaScript", taskChecked: false },
+    { id: 4, task: "Study HTML & CSS", taskChecked: false },
+  ];
   task_data.forEach((task) => $TASKS_LIST.appendChild(createListItem(task)));
+  updateLocalStorage();
   activeTasks();
 }
 
