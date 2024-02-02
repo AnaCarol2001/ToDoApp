@@ -30,9 +30,8 @@
     <!-- style -->
     <link rel="stylesheet" href="./src/assets/css/styles.css" />
 
-    <!-- scripts -->
-    <script src="./src/js/theme.js" defer></script>
-    <script src="./src/js/app.js" defer></script>
+    <!-- script -->
+    <script type="module" src="./src/js/app.js" defer></script>
   </head>
   <body data-theme="">
     <header>
@@ -86,10 +85,13 @@
       <div class="actions-section">
         <div class="actions-section__status box-shadow">
           <p class="text-crl-500 float-left">
-            <span class="task-count-js">0</span> items left
+            <span id="task-count">0</span> items left
           </p>
         </div>
-        <div class="filters-js actions-section__filter-btns flex box-shadow">
+        <div
+          id="filters-btn"
+          class="filters-js actions-section__filter-btns flex box-shadow"
+        >
           <button
             id="allTasks"
             class="text-crl-500 text-bold button active"
@@ -116,7 +118,11 @@
           </button>
         </div>
         <div class="actions-section__clear-btn box-shadow">
-          <button id="clearCompleted" type="button" class="text-crl-500 button">
+          <button
+            id="clear-completed"
+            type="button"
+            class="text-crl-500 button"
+          >
             Clear Completed <span class="sr-only">Tasks</span>
           </button>
         </div>
@@ -147,7 +153,11 @@
       <li draggable="true">
         <input type="checkbox" name="" id="" />
         <label for=""></label>
-        <button type="button" class="button button--remove">
+        <button
+          type="button"
+          data-id="remove-task"
+          class="button button--remove"
+        >
           <span class="sr-only">Remove task</span>
           <span aria-hidden="true" class="material-symbols-outlined">
             close

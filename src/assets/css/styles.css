@@ -385,6 +385,16 @@ input[type="checkbox"]:checked + label {
   border-radius: 0.5em 0.5em 0em 0em;
 }
 
+#info input,
+#info button {
+  opacity: 0;
+}
+
+#info > label {
+  text-align: center;
+  text-transform: capitalize;
+}
+
 .todo-list > * {
   padding: clamp(1rem, 0.8239rem + 0.7512vw, 1.5rem);
   border-bottom: 1px solid var(--crl-400);
@@ -426,6 +436,11 @@ input[type="checkbox"]:checked + label {
   justify-content: center;
   border-radius: 0.5em;
   font-size: 1rem;
+  pointer-events: none;
+}
+
+.actions-section__filter-btns > button {
+  pointer-events: all;
 }
 
 .actions-section__filter-btns > button.active {
